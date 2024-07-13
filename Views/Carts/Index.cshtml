@@ -1,0 +1,137 @@
+﻿@using Newtonsoft.Json
+@model List<Carts.Models.Cart>
+@{
+    ViewData["Title"] = "Carts";
+    ViewData["CSS"] = "carts.css";
+}
+
+<div class="mainBody">
+    <div class="firstSection">
+        <ul>
+            <li class="nonSelectionInList">Пользователи</li>
+            <li class="nonSelectionInList">Уведомления и напоминания</li>
+            <li class="nonSelectionInList">Настройки АИС ОГПА</li>
+            <li class="selectInList">Справочник погрузчиков</li>
+            <li class="nonSelectionInList">Резервное копирование и восстановление</li>
+            <li class="nonSelectionInList">Спровочники</li>
+        </ul>
+    </div>
+    <div class="secondSection">
+        <div class="secondSectionName">
+                Справочник погрузчиков
+            </div>
+        <div class="secondSectionFind">
+                <div class="findName">Номер погрузчика</div>
+                <input value="@ViewBag.Number" class="inputFindCarts" id="inputFindCarts" type="text" />
+                <a class="findButton" id="findButton">Искать</a>
+                <a class="clearFilter" asp-action="" asp-controller="Carts" asp-action="Index">Сбросить фильтр</a>
+            </div>
+        <div class="cartsMenu">
+            <div class="cartsMenuAdd cartsMenuButton" id="cartsMenuAdd">Добавить</div>
+            <div class="cartsMenuChange cartsMenuButton" id="cartsMenuChange">Изменить</div>
+            <div class="cartsMenuRemove cartsMenuButton" id="cartsMenuRemove">Удалить</div>
+            <div class="cartsMenuSave cartsMenuButton" id="cartsMenuSave">Сохранить</div>
+            <div class="cartsMenuCancel cartsMenuButton" id="cartsMenuCancel">Отменить</div>
+        </div>
+        <div class="cartsInforamtion">
+            <div class="cartsMenuTable">
+                <div class="cartsMenuTableColumsName">
+                    <div class="cartsIdColumn cartsColumnName">Код записи</div>
+                    <div class="cartsMarkColumn cartsColumnName">Марка</div>
+                    <div class="cartsNumberColumn cartsColumnName">Номер</div>
+                    <div class="cartsActivitiColumn cartsColumnName">Активен</div>
+                    <div class="cartsChangedTimeColumn cartsColumnName">Время и дата изменения</div>
+                    <div class="cartsChangedNameColumn cartsColumnName">Пользователь</div>
+                </div>
+                <div class="cartsManuTableContent">
+                    <div class="cartsTemplate" id="cartsTemplate">
+                        <div class="cartsId cartsItemContent">1</div>
+                        <div class="cartsMark cartsItemContent">Амкадор</div>
+                        <div class="cartsNumber cartsItemContent">4565 РН-1</div>
+                        <div class="cartsItemContent">
+                            <input class="cartsActiviti" type="checkbox" />
+                        </div>
+                        <div class="cartsChangedTime cartsItemContent">15.04.2024 14:12</div>
+                        <div class="cartsChangedName cartsItemContent">Иванов И.И.</div>
+                    </div>
+                </div>
+                </div>
+            <div class="cartsBugContent">
+                <div class="cartsBugContentName" id="cartsBugContentName">
+                    Простои по погрузчику 4565 РН-1
+                </div>
+                <div class="cartsBugMenu">
+                    <div class="cartsBugMenuAdd cartsBugMenuButton" id="cartsBugMenuAdd">Добавить</div>
+                    <div class="cartsBugMenuChange cartsBugMenuButton" id="cartsBugMenuChange">Изменить</div>
+                    <div class="cartsBugMenuRemove cartsBugMenuButton" id="cartsBugMenuRemove">Удалить</div>
+                    <div class="cartsBugMenuSave cartsBugMenuButton" id="cartsBugMenuSave">Сохранить</div>
+                    <div class="cartsBugMenuCancel cartsBugMenuButton" id="cartsBugMenuCancel">Отменить</div>
+                </div>
+                <div class="cartBugsTable">
+                    <div class="cartBugsTableColumn">
+                        <div class="cartBugsIdColumn cartBugsItemColumn">Код записи</div>
+                        <div class="cartBugsStartColumn cartBugsItemColumn">Начало</div>
+                        <div class="cartBugsEndColumn cartBugsItemColumn">Окончание</div>
+                        <div class="cartBugsTimeColumn cartBugsItemColumn">Время простоя</div>
+                        <div class="cartBugsDescColumn cartBugsItemColumn">Примечание</div>
+                    </div>
+                    <div class="cartBugsContent">
+                        <div class="cartBugTemplate" id="cartBugTemplate">
+                            <div class="cartBugsId cartBugsItem">1</div>
+                            <div class="cartBugsStart cartBugsItem">16.04.2024 14:12</div>
+                            <div class="cartBugsEnd cartBugsItem">16.04.2024 15:12</div>
+                            <div class="cartBugsTime cartBugsItem">1 ч</div>
+                            <div class="cartBugsDesc cartBugsItem">сломался</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
+</div>
+<div class="templateInputCartBackground" id="templateInputCartBackground">
+    <div class="templateInputCart">
+        <div id="templateInputCartFirstName" class="templateInputCartElement">Марка</div>
+        <input id="templateInputCartFirstInput" class="templateInputCartElement" type="text" />
+        <div id="templateInputCartSecondName" class="templateInputCartElement">Номер</div>
+        <input id="templateInputCartSecondInput" class="templateInputCartElement" type="text" />
+        <div id="templateInputCartThirdName" class="templateInputCartElement">Грузоподъемность</div>
+        <input id="templateInputCartThirdInput" class="templateInputCartElement" type="number" />
+        <button id="templateInputCartConfirm" class="templateInputCartElement">Добавить</button>
+        <button id="templateInputCartCancel" class="templateInputCartElement">Отмена</button>
+    </div>
+</div>
+<div class="templateConfirmingActionBackground" id="templateConfirmingActionBackground">
+    <div class="templateConfirmingAction" id="templateConfirmingActionBackground">
+        <div id="nameConfirming" class="elementConfirming">
+            Вы уверены в ... ?
+        </div>
+        <button id="acceptConfirming" class="elementConfirming">
+            Да
+        </button>
+        <button id="cancelConfirming" class="elementConfirming">
+            Нет
+        </button>
+    </div>
+</div>
+<div class="templateInputCartBugsBackground" id="templateInputCartBugsBackground">
+    <div class="templateInputBugsCart">
+        <div id="templateInputCartBugsFirstName" class="templateInputCartBugsElement">Начало</div>
+        <input id="templateInputCartBugsFirstInput" class="templateInputCartBugsElement" type="datetime-local" />
+
+        <div id="templateInputCartBugsSecondName" class="templateInputCartBugsElement">Конец</div>
+        <input id="templateInputCartBugsSecondInput" class="templateInputCartBugsElement" type="datetime-local" />
+
+        <div id="templateInputCartBugsThirdName" class="templateInputCartBugsElement">Описание</div>
+        <textarea id="templateInputCartBugsThirdInput" class="templateInputCartBugsElement" type="text" maxlength="500"></textarea>
+        <button id="templateInputCartBugsConfirm" class="templateInputCartBugsElement">Добавить</button>
+        <button id="templateInputCartBugsCancel" class="templateInputCartBugsElement">Отмена</button>
+    </div>
+</div>
+
+<script>
+    var inputTextData = JSON.stringify(@Html.Raw(JsonConvert.SerializeObject(Model.ToArray())));
+    var searchCarts = JSON.parse(inputTextData);
+</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+<script src="~/js/cart.js" asp-append-version="true"></script>

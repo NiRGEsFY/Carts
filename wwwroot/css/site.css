@@ -1,0 +1,79 @@
+:root {
+  --main-bg-color: #f7f7f7;
+  --light-bg-color: #dadada;
+  --element-bg-color: #c5c5c5;
+  --element-border-color: #e4e4e4;
+  --button-bg-color: #c20000;
+  --element-contrast-color: #d80000;
+  --contrast-color: #ff0000;
+
+  --background-box: #008c9e65;
+
+  --text-error: #b41717;
+  --main-text-color: #131313;
+  --main-contrast-text-color: #000000;
+  --main-text-select-color: #be0000;
+  --button-text-color: #ebebeb;
+  --button-text-contrast: #ffffff;
+
+  --font-heavy: 26px;
+  --font-max: 22px;
+  --font-normal: 18px;
+  --font-min: 14px;
+}
+
+html {
+  font-size: 14px;
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+  position: relative;
+}
+
+body {
+  margin-bottom: 60px;
+  display: grid;
+  grid-template-columns: 100%;
+  grid-template-rows: 7.5%, 85% ,7.5%;
+
+}
+header{
+  grid-row: 1;
+  grid-column: 1;
+  height: 7.5vh;
+  background-color: var(--element-contrast-color);
+  width: 95%;
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  align-self: center;
+  justify-self: center;
+  padding: 5px 15px;
+  margin-top: 5px;
+  border-radius: 10px;
+}
+.profile{
+  font-size: 16px;
+  background-color: #e7e7e7;
+  padding: 3px 25px;
+  border-radius: 13px;
+  transition: 0.3s ease-in-out;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+.profile:hover{
+  background-color: #ffffff;
+}
+.profile:active{
+  background-color: #e7e7e7;
+}
+.profile a{
+  color: var(--main-contrast-text-color);
+  font-weight: bold;
+  text-decoration: none;
+}
